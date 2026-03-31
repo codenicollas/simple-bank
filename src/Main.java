@@ -1,3 +1,5 @@
+import modelos.Data;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +9,9 @@ public class Main {
         System.out.println("Digite seu nome: ");
         String nome = scanner.nextLine();
 
+        Data data = new Data(10,5,2002);
+
+        System.out.println(data);
         
     }
 }
