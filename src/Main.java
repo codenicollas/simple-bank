@@ -1,7 +1,6 @@
 import modelos.Cliente;
 import modelos.Data;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -9,19 +8,23 @@ public class Main {
         try {
             Scanner scanner = new Scanner(System.in);
 
-            Cliente cliente = new Cliente();
-
             System.out.println("Digite seu nome: ");
             String nome = scanner.nextLine();
-
-            cliente.setNome(nome);
 
             System.out.println("Digite seu CPF: ");
             String cpf = scanner.nextLine();
 
-            cliente.setCpf(cpf);
+            System.out.println("Digite seu dia de nascimento: ");
+            int dia = scanner.nextInt();
 
-            System.out.println("Digite sua data de nascimento");
+            System.out.println("Digite o seu mês de nascimento: ");
+            int mes = scanner.nextInt();
+
+            System.out.println("Digite seu ano de nascimento: ");
+            int ano = scanner.nextInt();
+
+            Data data = new Data(dia, mes, ano);
+            Cliente cliente = new Cliente(nome, cpf, data);
         } catch (Exception exception) {
             System.out.println("Erro");
         }

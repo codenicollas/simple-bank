@@ -1,21 +1,15 @@
 package modelos;
 
-import java.util.Date;
-
 public class Cliente {
 
     private String nome;
     private String cpf;
-    private Date dtNascimento;
+    private Data dtNascimento;
 
-    public Cliente(String nome, String cpf, Date dtNascimento) {
+    public Cliente(String nome, String cpf, Data dtNascimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.dtNascimento = dtNascimento;
-    }
-
-    public Cliente() {
-        
     }
 
     public String getNome() {
@@ -34,11 +28,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Date getDtNascimento() {
+    public Data getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(Date dtNascimento) {
+    public void setDtNascimento(Data dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 }
