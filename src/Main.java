@@ -1,5 +1,12 @@
+import java.util.Date;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Scanner scanner = new Scanner(System.in);
+
+        String nome;
+        String cpf;
+        Date data;
     }
 }
