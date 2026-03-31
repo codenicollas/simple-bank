@@ -1,17 +1,29 @@
+import modelos.Cliente;
 import modelos.Data;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
+        try {
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite seu nome: ");
-        String nome = scanner.nextLine();
+            Cliente cliente = new Cliente();
 
-        Data data = new Data(10,5,2002);
+            System.out.println("Digite seu nome: ");
+            String nome = scanner.nextLine();
 
-        System.out.println(data);
-        
+            cliente.setNome(nome);
+
+            System.out.println("Digite seu CPF: ");
+            String cpf = scanner.nextLine();
+
+            cliente.setCpf(cpf);
+
+            System.out.println("Digite sua data de nascimento");
+        } catch (Exception exception) {
+            System.out.println("Erro");
+        }
     }
 }

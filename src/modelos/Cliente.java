@@ -14,6 +14,10 @@ public class Cliente {
         this.dtNascimento = dtNascimento;
     }
 
+    public Cliente() {
+        
+    }
+
     public String getNome() {
         return nome;
     }
