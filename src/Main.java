@@ -6,5 +6,7 @@ public class Main {
 
         System.out.println("Digite seu nome: ");
         String nome = scanner.nextLine();
+
+        
     }
 }
