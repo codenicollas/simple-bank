@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        try {
-            Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
 
             System.out.println("Digite seu nome: ");
             String nome = scanner.nextLine();
@@ -26,7 +25,7 @@ public class Main {
             Data data = new Data(dia, mes, ano);
             Cliente cliente = new Cliente(nome, cpf, data);
 
-            cliente.exibirDados();
+            System.out.println(cliente);
         } catch (Exception exception) {
             System.out.println("Erro");
         }

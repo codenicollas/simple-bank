@@ -36,11 +36,10 @@ public class Cliente {
         this.dtNascimento = dtNascimento;
     }
 
-    public void exibirDados() {
-        System.out.println(
-        "Nome: " + this.nome +
-        "\n CPF: " + this.cpf +
-        "\nData de nascimento: " + this.dtNascimento.toString()
-        );
+    @Override
+    public String toString() {
+        return "\nNome: " + this.nome +
+                "\nCPF: " + this.cpf +
+                "\nData de nascimento: " + this.dtNascimento.toString();
     }
 }
