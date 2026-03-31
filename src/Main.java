@@ -1,12 +1,10 @@
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        String nome;
-        String cpf;
-        Date data;
+        System.out.println("Digite seu nome: ");
+        String nome = scanner.nextLine();
     }
 }
