@@ -25,6 +25,8 @@ public class Main {
 
             Data data = new Data(dia, mes, ano);
             Cliente cliente = new Cliente(nome, cpf, data);
+
+            cliente.exibirDados();
         } catch (Exception exception) {
             System.out.println("Erro");
         }

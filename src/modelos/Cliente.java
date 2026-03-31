@@ -35,4 +35,12 @@ public class Cliente {
     public void setDtNascimento(Data dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
+
+    public void exibirDados() {
+        System.out.println(
+        "Nome: " + this.nome +
+        "\n CPF: " + this.cpf +
+        "\nData de nascimento: " + this.dtNascimento.toString()
+        );
+    }
 }
