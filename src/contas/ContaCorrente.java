@@ -13,10 +13,28 @@ public class ContaCorrente extends ContaBancaria {
         this.limiteCredito = limiteCredito;
     }
 
-    // FAZER AQUI
     @Override
     public void movimenta(Operacao operacao) {
+        // lógica única
 
+        // usa o comportamento padrão da ContaBancaria
+        super.movimenta(operacao);
+    }
+
+    @Override
+    public void realizarDeposito(double valor) {
+        // lógica única
+
+        // usa o comportamento padrão da ContaBancaria
+        super.realizarDeposito(valor);
+    }
+
+    @Override
+    public void realizarSaque(double valor) {
+        // lógica única
+
+        // usa o comportamento padrão da ContaBancaria
+        super.realizarSaque(valor);
     }
 
     public double getLimiteCredito() {
