@@ -1,7 +1,3 @@
-# Project exclude paths
-/.gradle/
-/build/
 /.idea/
 /.vscode/
 /bin/
-gradle.properties
