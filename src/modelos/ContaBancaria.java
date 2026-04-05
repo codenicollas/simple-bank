@@ -19,7 +19,9 @@ public class ContaBancaria {
         double valor = operacao.getValor();
 
         if (tipo == 'D' || tipo == 'd') {
-            System.out.println("DEPOSITO");
+            this.saldoInicial = valor;
+            
+            System.out.println("Novo saldo: " + valor);
         } else {
             System.out.println("SAQUE");
         }
