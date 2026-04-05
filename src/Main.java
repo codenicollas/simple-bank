@@ -30,8 +30,11 @@ public class Main {
             ContaBancaria contaBancaria = new ContaBancaria(cliente, 0);
 
             if (cliente != null) {
+                scanner.nextLine();
+
                 System.out.println("Digite o tipo de operação que você quer realizar: ");
                 System.out.println("Insira D para deposito e S para saque");
+
                 String tipo = scanner.nextLine().strip();
 
                 System.out.println("");
