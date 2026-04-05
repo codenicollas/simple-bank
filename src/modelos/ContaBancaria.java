@@ -15,7 +15,10 @@ public class ContaBancaria {
     }
 
     public void movimenta(Operacao operacao) {
-        if (operacao.getTipo() == 'D') {
+        char tipo = operacao.getTipo();
+        double valor = operacao.getValor();
+
+        if (tipo == 'D' || tipo == 'd') {
             System.out.println("DEPOSITO");
         } else {
             System.out.println("SAQUE");
