@@ -18,11 +18,17 @@ public class ContaBancaria {
         char tipo = operacao.getTipo();
         double valor = operacao.getValor();
 
-        if (tipo == 'D' || tipo == 'd') {
+        if (tipo == 'D') {
             this.saldoInicial = this.saldoInicial + valor;
-            System.out.println("O novo valor é: " + this.saldoInicial);
+            System.out.println("Depósito realizado. O novo valor é: " + this.saldoInicial);
         } else {
-            System.out.println("TESTE SAQUE");
+            if (this.saldoInicial < valor) {
+                System.out.println("Saldo insuficiente");
+                return;
+            }
+
+            this.saldoInicial = this.saldoInicial - valor;
+            System.out.println("Saque realizado. O novo valor é: " + this.saldoInicial);
         }
     }
 }

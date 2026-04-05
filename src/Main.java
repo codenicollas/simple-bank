@@ -12,79 +12,95 @@ public class Main {
         boolean rodando = true;
 
         while (rodando) {
-            System.out.println("\n=== Bem-vindo ao Aplicativo Bancário ===");
-            System.out.println("Menu de opções:");
+            System.out.println("\nMenu:");
             System.out.println("1 - Abrir conta");
-            System.out.println("2 - Mostrar integrantes do grupo");
+            System.out.println("2 - Mostrar integrantes");
             System.out.println("3 - Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Opção: ");
 
             int escolha = scanner.nextInt();
 
             switch (escolha) {
                 case 1:
-                    System.out.println("\n--- Abertura de Conta ---");
-                    System.out.println("Qual tipo de conta você deseja abrir?");
-                    System.out.println("C - Corrente\nP - Poupança\nI - Investimento");
-                    System.out.print("Sua escolha: ");
-
+                    System.out.println("\nAbertura de conta.");
                     char tipoConta;
 
                     while (true) {
-                        System.out.println("Qual tipo de conta você deseja abrir?");
-                        System.out.println("C - Corrente\nP - Poupança\nI - Investimento");
-                        System.out.print("Sua escolha: ");
-
+                        System.out.print("Tipo (C - Corrente, P - Poupança, I - Investimento): ");
                         tipoConta = scanner.next().toUpperCase().charAt(0);
+
                         if (tipoConta == 'C' || tipoConta == 'P' || tipoConta == 'I') {
                             break;
                         }
 
-                        System.out.println("\nTipo de conta inválido. Tente novamente.\n");
+                        System.out.println("Tipo inválido.");
                     }
 
                     Cliente cliente = pedirDados(scanner);
 
                     switch (tipoConta) {
                         case 'C':
-                            System.out.println("\n>>> Conta Corrente criada com sucesso! <<<");
+                            System.out.println("Conta Corrente instanciada.");
                             ContaCorrente contaCorrente = new ContaCorrente(cliente, 1000, 0);
 
                             scanner.nextLine();
 
-                            System.out.print("Qual o tipo da operação? (D para depósito, S para saque): ");
-                            String tipoOperacao = scanner.nextLine().toUpperCase();
+                            char tipoOperacao;
+                            while (true) {
+                                System.out.print("Operação (D - Depósito, S - Saque): ");
+                                String entradaOp = scanner.nextLine();
 
-                            System.out.print("Insira o valor da operação: R$ ");
-                            double valor = scanner.nextDouble();
+                                if (verificarTipoOperacao(entradaOp)) {
+                                    tipoOperacao = entradaOp.toUpperCase().trim().charAt(0);
+                                    break;
+                                }
 
-                            Operacao operacao = new Operacao(tipoOperacao.charAt(0), valor);
+                                System.out.println("Operação inválida.");
+                            }
+
+                            double valor;
+                            while (true) {
+                                System.out.print("Valor da operação: ");
+                                String valorStr = scanner.nextLine();
+
+                                if (verificarNumero(valorStr)) {
+                                    valor = Double.parseDouble(valorStr.trim());
+                                    break;
+                                }
+                                System.out.println("Valor numérico inválido.");
+                            }
+
+                            Operacao operacao = new Operacao(tipoOperacao, valor);
                             contaCorrente.movimenta(operacao);
 
-                            System.out.println("Operação realizada com sucesso!");
+                            System.out.println("Operação processada.");
                             break;
+
                         case 'P':
-                            System.out.println("\n>>> Conta Poupança criada com sucesso! <<<");
+                            System.out.println("Conta Poupança selecionada (Teste).");
                             break;
+
                         case 'I':
-                            System.out.println("\n>>> Conta Investimento criada com sucesso! <<<");
+                            System.out.println("Conta Investimento selecionada (Teste).");
                             break;
                     }
+                    break;
 
-                    break;
                 case 2:
-                    System.out.println("\n--- Integrantes do grupo ---");
-                    System.out.println("* Nicolas Pinheiro Bueno");
-                    System.out.println("* Guilherme Jefinny Souto");
-                    System.out.println("* João Tietbohl");
-                    System.out.println("* Enzo Bueno");
+                    System.out.println("\nIntegrantes:");
+                    System.out.println("- Nicolas Pinheiro Bueno");
+                    System.out.println("- Guilherme Jefinny Souto");
+                    System.out.println("- João Tietbohl");
+                    System.out.println("- Enzo Bueno");
                     break;
+
                 case 3:
                     rodando = false;
-                    System.out.println("\nPrograma finalizado.");
+                    System.out.println("Encerrando.");
                     break;
+
                 default:
-                    System.out.println("\nEscolha inválida. Escolha novamente.");
+                    System.out.println("Opção inválida.");
                     break;
             }
         }
@@ -95,25 +111,35 @@ public class Main {
     private static Cliente pedirDados(Scanner scanner) {
         scanner.nextLine();
 
-        System.out.println("\n--- Dados do Cliente ---");
-        System.out.print("Digite seu nome: ");
+        System.out.println("\nDados do cliente:");
+        System.out.print("Nome: ");
         String nome = scanner.nextLine();
 
-        System.out.print("Digite seu CPF: ");
+        System.out.print("CPF: ");
         String cpf = scanner.nextLine();
 
-        System.out.print("Digite seu dia de nascimento: ");
+        System.out.print("Dia nascimento: ");
         int dia = scanner.nextInt();
 
-        System.out.print("Digite o seu mês de nascimento: ");
+        System.out.print("Mês nascimento: ");
         int mes = scanner.nextInt();
 
-        System.out.print("Digite seu ano de nascimento: ");
+        System.out.print("Ano nascimento: ");
         int ano = scanner.nextInt();
 
         Data data = new Data(dia, mes, ano);
 
         return new Cliente(nome, cpf, data);
+    }
+
+    private static boolean verificarTipoOperacao(String entrada) {
+        if (entrada == null) {
+            return false;
+        }
+
+        char tipo = entrada.toUpperCase().trim().charAt(0);
+
+        return tipo == 'D' || tipo == 'S';
     }
 
     private static boolean verificarNumero(String valorStr) {
