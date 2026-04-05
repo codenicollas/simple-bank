@@ -6,16 +6,16 @@ import modelos.Operacao;
 
 public class ContaCorrente extends ContaBancaria {
 
-    private double limiteCredito;
+    private double credito;
 
-    public ContaCorrente(Cliente cliente, double saldoInicial, double limiteCredito) {
-        super(cliente, saldoInicial);
-        this.limiteCredito = limiteCredito;
+    public ContaCorrente(Cliente cliente, double saldo, double credito) {
+        super(cliente, saldo);
+        this.credito = credito;
     }
 
     @Override
     public void movimenta(Operacao operacao) {
-        // lógica única
+        // lógica única 
 
         // usa o comportamento padrão da ContaBancaria
         super.movimenta(operacao);
@@ -37,11 +37,11 @@ public class ContaCorrente extends ContaBancaria {
         super.realizarSaque(valor);
     }
 
-    public double getLimiteCredito() {
-        return limiteCredito;
+    public double getCredito() {
+        return credito;
     }
 
-    public void setLimiteCredito(double limiteCredito) {
-        this.limiteCredito = limiteCredito;
+    public void setLimiteCredito(double credito) {
+        this.credito = credito;
     }
 }

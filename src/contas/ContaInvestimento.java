@@ -7,11 +7,11 @@ import modelos.Operacao;
 
 public class ContaInvestimento extends ContaBancaria {
 
-    private Data dtVencimento;
+    private Data vencimento;
 
-    public ContaInvestimento(Cliente cliente, double saldoInicial, Data dtVencimento) {
-        super(cliente, saldoInicial);
-        this.dtVencimento = dtVencimento;
+    public ContaInvestimento(Cliente cliente, double saldo, Data vencimento) {
+        super(cliente, saldo);
+        this.vencimento = vencimento;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ContaInvestimento extends ContaBancaria {
         super.realizarSaque(valor);
     }
 
-    public Data getDtVencimento() {
-        return dtVencimento;
+    public Data getVencimento() {
+        return vencimento;
     }
 }

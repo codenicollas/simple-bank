@@ -6,11 +6,11 @@ import modelos.Operacao;
 
 public class ContaPoupanca extends ContaBancaria {
 
-    private int diaAniversario;
+    private int aniversario;
 
-    public ContaPoupanca(Cliente cliente, double saldoInicial, int diaAniversario) {
-        super(cliente, saldoInicial);
-        this.diaAniversario = diaAniversario;
+    public ContaPoupanca(Cliente cliente, double saldo, int aniversario) {
+        super(cliente, saldo);
+        this.aniversario = aniversario;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ContaPoupanca extends ContaBancaria {
         super.realizarSaque(valor);
     }
 
-    public int getDiaAniversario() {
-        return diaAniversario;
+    public int getAniversario() {
+        return aniversario;
     }
 }
