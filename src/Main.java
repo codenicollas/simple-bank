@@ -1,7 +1,7 @@
+import java.util.Scanner;
+
 import modelos.Cliente;
 import modelos.Data;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {

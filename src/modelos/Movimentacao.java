@@ -1,22 +1,20 @@
 package modelos;
 
-import java.util.Date;
-
 public class Movimentacao {
-    
+
     private int quantidade;
     private double valorTotal;
 
     public Movimentacao(int quantidade, double valorTotal) {
-            this.quantidade = quantidade;
-            this.valorTotal = valorTotal;
+        this.quantidade = quantidade;
+        this.valorTotal = valorTotal;
     }
 
     public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade() {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -24,8 +22,7 @@ public class Movimentacao {
         return valorTotal;
     }
 
-    public void setvalorTotal() {
+    public void setvalorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-
 }
