@@ -53,6 +53,9 @@ public class Main {
                         System.out.println("Valor numérico inválido.");
                     }
 
+                    char tipoOperacao;
+                    double valor;
+
                     switch (tipoConta) {
                         case 'C':
                             System.out.println("Conta Corrente selecionada.");
@@ -73,7 +76,6 @@ public class Main {
                             ContaCorrente contaCorrente = new ContaCorrente(cliente, saldoInicial, limiteCredito);
                             System.out.println("Conta Corrente instanciada.");
 
-                            char tipoOperacao;
                             while (true) {
                                 System.out.print("Operação (D - Depósito, S - Saque): ");
                                 String entradaOp = scanner.nextLine();
@@ -86,7 +88,6 @@ public class Main {
                                 System.out.println("Operação inválida.");
                             }
 
-                            double valor;
                             while (true) {
                                 System.out.print("Valor da operação: ");
                                 String valorStr = scanner.nextLine();
