@@ -27,6 +27,7 @@ public class Main {
                     char tipoConta;
                     while (true) {
                         System.out.print("Tipo (C - Corrente, P - Poupança, I - Investimento): ");
+
                         tipoConta = scanner.next().toUpperCase().charAt(0);
 
                         if (tipoConta == 'C' || tipoConta == 'P' || tipoConta == 'I') {
@@ -63,6 +64,7 @@ public class Main {
                             double limiteCredito;
                             while (true) {
                                 System.out.print("Limite de crédito: ");
+
                                 String limiteStr = scanner.nextLine();
 
                                 if (verificarNumero(limiteStr)) {
@@ -74,7 +76,8 @@ public class Main {
                             }
 
                             ContaCorrente contaCorrente = new ContaCorrente(cliente, saldoInicial, limiteCredito);
-                            System.out.println("Conta Corrente instanciada.");
+
+                            System.out.println("Sucesso.");
 
                             while (true) {
                                 System.out.print("Operação (D - Depósito, S - Saque): ");
