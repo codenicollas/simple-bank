@@ -1,7 +1,7 @@
 package modelos;
 
 public class ContaBancaria {
-    
+
     private Cliente cliente;
     private double saldoInicial;
 
@@ -16,6 +16,9 @@ public class ContaBancaria {
 
     public void movimenta(Operacao operacao) {
         if (operacao.getTipo() == 'D') {
+            System.out.println("DEPOSITO");
+        } else {
+            System.out.println("SAQUE");
         }
     }
 }
