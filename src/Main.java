@@ -1,91 +1,98 @@
 import java.util.Scanner;
 
 import modelos.Cliente;
-import modelos.ContaBancaria;
+import modelos.ContaCorrente;
 import modelos.Data;
-import modelos.Operacao;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        try (Scanner scanner = new Scanner(System.in)) {
+        Scanner scanner = new Scanner(System.in);
 
-            boolean entradaValida = false;
-            do {
+        boolean rodando = true;
 
-                System.out.println("Digite qual tipo de conta voce deseja abrir");
-                System.out.println(
-                "Digite os seguintes dígitos em:\n" + 
-                "C - Corrente\n" + 
-                "P - Poupança\n" + 
-                "I - Investimento"
-                );
+        while (rodando) {
+            System.out.println("Bem-vindo ao aplicativo bancário: ");
+            System.out.println("");
+            System.out.println("Menu de opções: ");
+            System.out.println("1 - Abrir conta");
+            System.out.println("2 - Mostrar integrantes do grupo");
+            System.out.println("3 - Sair");
 
-                char tipoConta = scanner.next().charAt(0);
+            int escolha = scanner.nextInt();
 
-                if (tipoConta == 'C' || tipoConta == 'c'){
-                    entradaValida = true;
-                    System.out.println("A conta que voce criou é --CORRENTE--");
+            switch (escolha) {
+                case 1:
+                    System.out.println("Digite qual tipo de conta voce deseja abrir");
+                    System.out.println(
+                            "Digite os seguintes dígitos em:\n" +
+                                    "C - Corrente\n" +
+                                    "P - Poupança\n" +
+                                    "I - Investimento");
 
-                } else if (tipoConta == 'P' || tipoConta == 'p') {
-                    entradaValida = true;
-                    System.out.println("A Conta que voce criou é --POUPANÇA-- ");
+                    char tipoConta = scanner.next().charAt(0);
 
-                } else if (tipoConta == 'I' || tipoConta == 'i') {
-                    entradaValida = true;
-                    System.out.println("A Conta que voce criou é --INVESTIMENTO-- ");
-            
-                } else {
-                    System.out.println("Por favor selecione um digito válido");
-                } 
-                    } while (!entradaValida); 
+                    Cliente cliente = pedirDados(scanner);
 
-            
-            System.out.println("Digite seu nome: ");
-            String nome = scanner.nextLine();
+                    switch (tipoConta) {
+                        case 'C':
+                            System.out.println("A conta que voce criou é --CORRENTE--");
+                            ContaCorrente contaCorrente = new ContaCorrente(cliente, 0, 0);
+                            break;
+                        case 'P':
+                            System.out.println("A Conta que voce criou é --POUPANÇA-- ");
+                            break;
+                        case 'I':
+                            System.out.println("A conta que você criou é --INVESTIMENTO--");
 
-            System.out.println("Digite seu CPF: ");
-            String cpf = scanner.nextLine();
+                            break;
+                        default:
+                            System.out.println("Entrada inválida.");
+                            break;
+                    }
 
-            System.out.println("Digite seu dia de nascimento: ");
-            int dia = scanner.nextInt();
-
-            System.out.println("Digite o seu mês de nascimento: ");
-            int mes = scanner.nextInt();
-
-            System.out.println("Digite seu ano de nascimento: ");
-            int ano = scanner.nextInt();
-
-            Data data = new Data(dia, mes, ano);
-            Cliente cliente = new Cliente(nome, cpf, data);
-
-            ContaBancaria contaBancaria = new ContaBancaria(cliente, 0);
-
-            
-
-            if (cliente != null) {
-                scanner.nextLine();
-
-                System.out.println("Digite o tipo de operação que você quer realizar: ");
-                System.out.println("Insira D para deposito e S para saque");
-
-                String tipo = scanner.nextLine().strip();
-
-                System.out.println("");
-
-                System.out.println("Insira um valor: ");
-                double valor = scanner.nextDouble();
-
-                Operacao operacao = new Operacao(tipo.charAt(0), valor);
-                contaBancaria.movimenta(operacao);
+                    break;
+                case 2:
+                    System.out.println("Integrantes do grupo:");
+                    System.out.println("* Nicolas Pinheiro Bueno");
+                    System.out.println("* Guilherme Jefinny Souto");
+                    System.out.println("* João Tietbohl");
+                    System.out.println("* Enzo Bueno");
+                    break;
+                case 3:
+                    rodando = false;
+                    System.out.println("Programa finalizado.");
+                    break;
+                default:
+                    rodando = false;
+                    System.out.println("Escolha inválida!");
+                    break;
             }
-
-            
-            System.out.println(cliente);
-        } catch (Exception exception) {
-            System.out.println("Erro");
         }
-    
     }
+
+    private static Cliente pedirDados(Scanner scanner) {
+        scanner.nextLine();
+
+        System.out.println("Digite seu nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Digite seu CPF: ");
+        String cpf = scanner.nextLine();
+
+        System.out.println("Digite seu dia de nascimento: ");
+        int dia = scanner.nextInt();
+
+        System.out.println("Digite o seu mês de nascimento: ");
+        int mes = scanner.nextInt();
+
+        System.out.println("Digite seu ano de nascimento: ");
+        int ano = scanner.nextInt();
+
+        Data data = new Data(dia, mes, ano);
+
+        return new Cliente(nome, cpf, data);
+    }
+
     private boolean verificarNumero(String valorStr) {
         try {
             double valor = Double.parseDouble(valorStr.trim());
