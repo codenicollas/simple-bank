@@ -18,14 +18,14 @@ public class Data {
     }
 
     public int getDia() {
-        return dia;
+        return this.dia;
     }
 
     public int getMes() {
-        return mes;
+        return this.mes;
     }
 
     public int getAno() {
-        return ano;
+        return this.ano;
     }
 }

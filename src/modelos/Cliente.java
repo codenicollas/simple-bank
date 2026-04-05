@@ -13,15 +13,15 @@ public class Cliente {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getCpf() {
-        return cpf;
+        return this.cpf;
     }
 
     public Data getDtNascimento() {
-        return dtNascimento;
+        return this.dtNascimento;
     }
 
     public void setNome(String nome) {

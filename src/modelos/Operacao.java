@@ -11,10 +11,10 @@ public class Operacao {
     }
 
     public char getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
     public double getValor() {
-        return valor;
+        return this.valor;
     }
 }

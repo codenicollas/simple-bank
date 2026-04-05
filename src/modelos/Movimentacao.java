@@ -16,10 +16,10 @@ public class Movimentacao {
     }
 
     public int getQuantidade() {
-        return quantidade;
+        return this.quantidade;
     }
 
     public double getValorTotal() {
-        return valorTotal;
+        return this.valorTotal;
     }
 }
