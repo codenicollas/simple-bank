@@ -6,7 +6,7 @@ import modelos.Data;
 import modelos.Operacao;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         boolean rodando = true;
@@ -23,8 +23,8 @@ public class Main {
             switch (escolha) {
                 case 1:
                     System.out.println("\nAbertura de conta.");
-                    char tipoConta;
 
+                    char tipoConta;
                     while (true) {
                         System.out.print("Tipo (C - Corrente, P - Poupança, I - Investimento): ");
                         tipoConta = scanner.next().toUpperCase().charAt(0);
@@ -38,12 +38,40 @@ public class Main {
 
                     Cliente cliente = pedirDados(scanner);
 
+                    scanner.nextLine();
+
+                    double saldoInicial;
+                    while (true) {
+                        System.out.print("Saldo inicial: ");
+                        String saldoStr = scanner.nextLine();
+
+                        if (verificarNumero(saldoStr)) {
+                            saldoInicial = Double.parseDouble(saldoStr.trim());
+                            break;
+                        }
+
+                        System.out.println("Valor numérico inválido.");
+                    }
+
                     switch (tipoConta) {
                         case 'C':
-                            System.out.println("Conta Corrente instanciada.");
-                            ContaCorrente contaCorrente = new ContaCorrente(cliente, 1000, 0);
+                            System.out.println("Conta Corrente selecionada.");
 
-                            scanner.nextLine();
+                            double limiteCredito;
+                            while (true) {
+                                System.out.print("Limite de crédito: ");
+                                String limiteStr = scanner.nextLine();
+
+                                if (verificarNumero(limiteStr)) {
+                                    limiteCredito = Double.parseDouble(limiteStr.trim());
+                                    break;
+                                }
+
+                                System.out.println("Valor numérico inválido.");
+                            }
+
+                            ContaCorrente contaCorrente = new ContaCorrente(cliente, saldoInicial, limiteCredito);
+                            System.out.println("Conta Corrente instanciada.");
 
                             char tipoOperacao;
                             while (true) {
@@ -67,13 +95,14 @@ public class Main {
                                     valor = Double.parseDouble(valorStr.trim());
                                     break;
                                 }
+
                                 System.out.println("Valor numérico inválido.");
                             }
 
                             Operacao operacao = new Operacao(tipoOperacao, valor);
                             contaCorrente.movimenta(operacao);
 
-                            System.out.println("Operação processada.");
+                            System.out.println("Sucesso.");
                             break;
 
                         case 'P':
@@ -104,8 +133,6 @@ public class Main {
                     break;
             }
         }
-
-        scanner.close();
     }
 
     private static Cliente pedirDados(Scanner scanner) {
@@ -133,7 +160,7 @@ public class Main {
     }
 
     private static boolean verificarTipoOperacao(String entrada) {
-        if (entrada == null) {
+        if (entrada == null || entrada.trim().isEmpty()) {
             return false;
         }
 
