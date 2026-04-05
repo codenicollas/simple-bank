@@ -15,6 +15,17 @@ public class Data {
     @Override
     public String toString() {
         return "" + this.dia + "/" + this.mes + "/" + this.ano;
+    }
 
+    public int getDia() {
+        return dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public int getAno() {
+        return ano;
     }
 }

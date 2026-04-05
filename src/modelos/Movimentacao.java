@@ -10,19 +10,16 @@ public class Movimentacao {
         this.valorTotal = valorTotal;
     }
 
+    public void registrarOperacao(double valor) {
+        this.quantidade++;
+        this.valorTotal = this.valorTotal + valor;
+    }
+
     public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public double getValorTotal() {
         return valorTotal;
-    }
-
-    public void setvalorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
     }
 }

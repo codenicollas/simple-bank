@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
+import contas.ContaCorrente;
 import modelos.Cliente;
-import modelos.ContaCorrente;
 import modelos.Data;
 import modelos.Operacao;
 
