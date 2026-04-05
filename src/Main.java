@@ -136,6 +136,7 @@ public class Main {
         }
     }
 
+    // STATIC POIS MAIN É STATIC
     private static Cliente pedirDados(Scanner scanner) {
         scanner.nextLine();
 
@@ -160,6 +161,7 @@ public class Main {
         return new Cliente(nome, cpf, data);
     }
 
+    // STATIC POIS MAIN É STATIC
     private static boolean verificarTipoOperacao(String entrada) {
         if (entrada == null || entrada.trim().isEmpty()) {
             return false;
@@ -170,6 +172,7 @@ public class Main {
         return tipo == 'D' || tipo == 'S';
     }
 
+    // STATIC POIS MAIN É STATIC
     private static boolean verificarNumero(String valorStr) {
         try {
             double valor = Double.parseDouble(valorStr.trim());
