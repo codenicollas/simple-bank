@@ -15,26 +15,10 @@ public class ContaCorrente extends ContaBancaria {
 
     @Override
     public void movimenta(Operacao operacao) {
-        // lógica única 
+        // lógica única (CRÉDITO)
 
         // usa o comportamento padrão da ContaBancaria
         super.movimenta(operacao);
-    }
-
-    @Override
-    public void realizarDeposito(double valor) {
-        // lógica única
-
-        // usa o comportamento padrão da ContaBancaria
-        super.realizarDeposito(valor);
-    }
-
-    @Override
-    public void realizarSaque(double valor) {
-        // lógica única
-        
-        // usa o comportamento padrão da ContaBancaria
-        super.realizarSaque(valor);
     }
 
     public double getCredito() {

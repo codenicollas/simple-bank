@@ -59,9 +59,8 @@ public class Main {
 
                     switch (tipoConta) {
                         case 'C':
-                            System.out.println("Conta Corrente selecionada.");
-
                             double limiteCredito;
+
                             while (true) {
                                 System.out.print("Limite de crédito: ");
 

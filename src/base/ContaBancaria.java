@@ -32,9 +32,15 @@ public class ContaBancaria {
                 realizarDeposito(valor);
                 break;
             case 'S':
-                realizarSaque(valor);
+                // VERIFICAO NA BASE
+                if (valor > this.saldo) {
+                    System.out.println("Saldo insuficiente.");
+                } else {
+                    realizarSaque(valor);
+                }
                 break;
             default:
+                System.out.println("Operação inválida.");
                 break;
         }
     }
@@ -45,15 +51,9 @@ public class ContaBancaria {
     }
 
     public void realizarSaque(double valor) {
-
         // Se o valor tiver centavos, barra
         if (valor % 1 != 0) {
-            System.out.println("Valor inválido.");
-            return;
-        }
-
-        if (valor > this.saldo) {
-            System.out.println("Saldo insuficiente.");
+            System.out.println("Valor inválido: Este caixa não opera moedas/centavos.");
             return;
         }
 

@@ -21,22 +21,6 @@ public class ContaPoupanca extends ContaBancaria {
         super.movimenta(operacao);
     }
 
-    @Override
-    public void realizarDeposito(double valor) {
-        // lógica única
-
-        // usa o comportamento padrão da ContaBancaria
-        super.realizarDeposito(valor);
-    }
-
-    @Override
-    public void realizarSaque(double valor) {
-        // lógica única
-
-        // usa o comportamento padrão da ContaBancaria
-        super.realizarSaque(valor);
-    }
-
     public int getAniversario() {
         return aniversario;
     }
