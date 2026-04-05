@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 import modelos.Cliente;
+import modelos.ContaBancaria;
 import modelos.Data;
+import modelos.Operacao;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -24,6 +26,19 @@ public class Main {
 
             Data data = new Data(dia, mes, ano);
             Cliente cliente = new Cliente(nome, cpf, data);
+
+            if (cliente != null) {
+                System.out.println("Digite o tipo de operação que você quer realizar: ");
+                System.out.println("Insira D para deposito e S para saque");
+                String tipo = scanner.nextLine().strip();
+
+                System.out.println("");
+
+                System.out.println("Insira um valor: ");
+                double valor = scanner.nextDouble();
+
+                Operacao operacao = new Operacao(tipo.charAt(0), valor);
+            }
 
             System.out.println(cliente);
         } catch (Exception exception) {
