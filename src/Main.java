@@ -103,9 +103,7 @@ public class Main {
                             Operacao operacao = new Operacao(tipoOperacao, valor);
                             contaCorrente.movimenta(operacao);
 
-                            System.out.println("Sucesso.");
                             break;
-
                         case 'P':
                             System.out.println("Conta Poupança selecionada (Teste).");
                             break;
