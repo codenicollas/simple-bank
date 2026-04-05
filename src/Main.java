@@ -9,6 +9,37 @@ public class Main {
     public static void main(String[] args) throws Exception {
         try (Scanner scanner = new Scanner(System.in)) {
 
+            boolean entradaValida = false;
+            do {
+
+                System.out.println("Digite qual tipo de conta voce deseja abrir");
+                System.out.println(
+                "Digite os seguintes dígitos em:\n" + 
+                "C - Corrente\n" + 
+                "P - Poupança\n" + 
+                "I - Investimento"
+                );
+
+                char tipoConta = scanner.next().charAt(0);
+
+                if (tipoConta == 'C' || tipoConta == 'c'){
+                    entradaValida = true;
+                    System.out.println("A conta que voce criou é --CORRENTE--");
+
+                } else if (tipoConta == 'P' || tipoConta == 'p') {
+                    entradaValida = true;
+                    System.out.println("A Conta que voce criou é --POUPANÇA-- ");
+
+                } else if (tipoConta == 'I' || tipoConta == 'i') {
+                    entradaValida = true;
+                    System.out.println("A Conta que voce criou é --INVESTIMENTO-- ");
+            
+                } else {
+                    System.out.println("Por favor selecione um digito válido");
+                } 
+                    } while (!entradaValida); 
+
+            
             System.out.println("Digite seu nome: ");
             String nome = scanner.nextLine();
 
@@ -29,6 +60,8 @@ public class Main {
 
             ContaBancaria contaBancaria = new ContaBancaria(cliente, 0);
 
+            
+
             if (cliente != null) {
                 scanner.nextLine();
 
@@ -46,9 +79,19 @@ public class Main {
                 contaBancaria.movimenta(operacao);
             }
 
+            
             System.out.println(cliente);
         } catch (Exception exception) {
             System.out.println("Erro");
+        }
+    
+    }
+    private boolean verificarNumero(String valorStr) {
+        try {
+            double valor = Double.parseDouble(valorStr.trim());
+            return valor > 0;
+        } catch (NumberFormatException exception) {
+            return false;
         }
     }
 }
