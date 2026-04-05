@@ -8,4 +8,9 @@ public class ContaCorrente extends ContaBancaria{
         // A ESCREVER
     }
 
+    public ContaCorrente(Cliente cliente, double saldoInicial, double limiteCredito) {
+        super(cliente, saldoInicial);
+        this.limiteCredito = limiteCredito;
+    }
+
 }
