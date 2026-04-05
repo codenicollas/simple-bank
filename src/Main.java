@@ -27,6 +27,8 @@ public class Main {
             Data data = new Data(dia, mes, ano);
             Cliente cliente = new Cliente(nome, cpf, data);
 
+            ContaBancaria contaBancaria = new ContaBancaria(cliente, 0);
+
             if (cliente != null) {
                 System.out.println("Digite o tipo de operação que você quer realizar: ");
                 System.out.println("Insira D para deposito e S para saque");
@@ -38,6 +40,7 @@ public class Main {
                 double valor = scanner.nextDouble();
 
                 Operacao operacao = new Operacao(tipo.charAt(0), valor);
+                contaBancaria.movimenta(operacao);
             }
 
             System.out.println(cliente);
