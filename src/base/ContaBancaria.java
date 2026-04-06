@@ -8,7 +8,7 @@ public class ContaBancaria {
     private Cliente cliente;
     private double saldo;
 
-    // PENSAR NISSO DEPOIS
+    // PENSAR NISSO DEPOIS (acho que é histórico / log)
     // private Movimentacao depositos;
     // private Movimentacao saques;
     // private Movimentacao juros;

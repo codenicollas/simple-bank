@@ -23,7 +23,7 @@ public class ContaInvestimento extends ContaBancaria {
         // lógica única
 
         // usa o comportamento padrão da ContaBancaria
-        // se passou na nossa regra, deixa a classe mãe mexer no saldo
+        // se passou na nossa regra (não entendi qual), deixa a classe mãe mexer no saldo
         super.movimenta(operacao);
     }
 
