@@ -18,10 +18,12 @@ public class ContaBancaria {
         this.saldo = saldo;
     }
 
+    // pega a operacao e joga pro metodo certo dependendo do tipo
     public void movimenta(Operacao operacao) {
         char tipo = operacao.getTipo();
         double valor = operacao.getValor();
 
+        // impede de sacar ou depositar zero/negativo
         if (valor <= 0) {
             System.out.println("Valor inválido.");
             return;
@@ -45,11 +47,13 @@ public class ContaBancaria {
         }
     }
 
+    // só adiciona o dinheiro no saldo
     public void realizarDeposito(double valor) {
         this.saldo = this.saldo + valor;
         System.out.println("Depósito realizado. O novo valor é: " + this.saldo);
     }
 
+    // logica do caixa fisico dar as notas certas
     public void realizarSaque(double valor) {
         // Se o valor tiver centavos, barra
         if (valor % 1 != 0) {
@@ -63,15 +67,17 @@ public class ContaBancaria {
         int[] notas = { 100, 50, 20, 10, 5, 2 };
         String extratoNotas = "";
 
+        // vai descendo o array do maior pro menor pra usar o minimo de notas possivel
         for (int nota : notas) {
             int quantidade = restante / nota;
 
             if (quantidade > 0) {
                 extratoNotas += quantidade + " nota(s) de R$ " + nota + "\n";
-                restante %= nota;
+                restante %= nota; // atualiza o restante só com o que sobrou
             }
         }
 
+        // se fechou a conta certinha com as notas que temos
         if (restante == 0) {
             this.saldo -= valor;
 

@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // flag pra manter o menu em loop até o usuário decidir sair
         boolean rodando = true;
 
         while (rodando) {
@@ -25,6 +26,7 @@ public class Main {
                     System.out.println("\nAbertura de conta.");
 
                     char tipoConta;
+                    // loop infinito pra prender o usuário até ele digitar uma letra aceitável
                     while (true) {
                         System.out.print("Tipo (C - Corrente, P - Poupança, I - Investimento): ");
 
@@ -37,8 +39,10 @@ public class Main {
                         System.out.println("Tipo inválido.");
                     }
 
+                    // chama o método lá de baixo pra montar o cliente
                     Cliente cliente = pedirDados(scanner);
 
+                    // limpa a quebra de linha que sobra no scanner pra não pular o próximo input
                     scanner.nextLine();
 
                     double saldoInicial;
@@ -46,6 +50,7 @@ public class Main {
                         System.out.print("Saldo inicial: ");
                         String saldoStr = scanner.nextLine();
 
+                        // usa nossa validação pra garantir que não vai quebrar o programa na conversão
                         if (verificarNumero(saldoStr)) {
                             saldoInicial = Double.parseDouble(saldoStr.trim());
                             break;
@@ -74,6 +79,7 @@ public class Main {
                                 System.out.println("Valor numérico inválido.");
                             }
 
+                            // junta tudo que coletamos pra instanciar a conta de verdade (nesse caso a corrente)
                             ContaCorrente contaCorrente = new ContaCorrente(cliente, saldoInicial, limiteCredito);
 
                             System.out.println("Sucesso.");
@@ -102,6 +108,7 @@ public class Main {
                                 System.out.println("Valor numérico inválido.");
                             }
 
+                            // empacota a operação num objeto e manda a conta resolver
                             Operacao operacao = new Operacao(tipoOperacao, valor);
                             contaCorrente.movimenta(operacao);
 
@@ -137,6 +144,7 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
+    // isola a criação do cliente pra não poluir o switch gigante lá em cima
     private static Cliente pedirDados(Scanner scanner) {
         scanner.nextLine();
 
@@ -162,6 +170,7 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
+    // garante que o usuario digitou D ou S
     private static boolean verificarTipoOperacao(String entrada) {
         if (entrada == null || entrada.trim().isEmpty()) {
             return false;
@@ -173,6 +182,7 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
+    // usa o try/catch como truque pra validar: se o parseDouble falhar, não é número
     private static boolean verificarNumero(String valorStr) {
         try {
             double valor = Double.parseDouble(valorStr.trim());
