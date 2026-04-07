@@ -17,9 +17,12 @@ public class ContaBancaria {
         this.cliente = cliente;
         this.saldo = saldo;
     }
-    // METODO PRINCIPAL, PREFERENCIALMENTE SOBSCREEVER (OVERRIDE)
-    /// APENAS ESSE MÉTODO, PARA ADICIONAR AS VERIFICACOES UNICAS DE CADA CONTA
-    // pega a operacao e joga pro metodo certo dependendo do tipo
+
+    // METODO PRINCIPAL
+    // preferencialmente subscrever (Override) apenas esse metodo para
+    // verificar as condições de cada conta
+
+    // faz verificações básicas e apenas chama os metodos de deposito e saque
     public void movimenta(Operacao operacao) {
         char tipo = operacao.getTipo();
         double valor = operacao.getValor();

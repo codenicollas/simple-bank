@@ -38,7 +38,7 @@ public class Main {
             }
         }
 
-        // fechar scanner pro vscode não
+        // fechar scanner pro vscode não reclamar
         scanner.close();
     }
 
