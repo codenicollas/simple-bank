@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import base.ContaBancaria;
 import contas.ContaCorrente;
 import modelos.Cliente;
 import modelos.Data;
@@ -37,7 +38,7 @@ public class Main {
             }
         }
 
-        // fechar scanner pro vscode não reclamar
+        // fechar scanner pro vscode não
         scanner.close();
     }
 
@@ -93,7 +94,7 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
-    private static void realizarOperacao(Scanner scanner, ContaCorrente conta) {
+    private static void realizarOperacao(Scanner scanner, ContaBancaria conta) {
         System.out.println("\n--- Primeira Operação ---");
 
         char tipoOperacao = pedirTipoOperacao(scanner);
