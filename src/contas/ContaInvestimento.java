@@ -3,7 +3,6 @@ package contas;
 import base.ContaBancaria;
 import modelos.Cliente;
 import modelos.Data;
-import modelos.Operacao;
 
 // mais uma que herda da conta base
 public class ContaInvestimento extends ContaBancaria {
@@ -17,15 +16,11 @@ public class ContaInvestimento extends ContaBancaria {
         this.vencimento = vencimento;
     }
 
-    // sobrescreve com regras únicas
+    // FAÇA AS VERIFICAÇÕES AQUI
+    // PS: a verificação que está aqui é a padrão, tem que alterar
     @Override
-    public void movimenta(Operacao operacao) {
-        // lógica única
-
-        // usa o comportamento padrão da ContaBancaria
-        // se passou na nossa regra (não entendi qual), deixa a classe mãe mexer no
-        // saldo
-        super.movimenta(operacao);
+    protected boolean autorizaSaque(double valor) {
+        return valor <= this.getSaldo();
     }
 
     @Override

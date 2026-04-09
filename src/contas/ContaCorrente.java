@@ -2,7 +2,6 @@ package contas;
 
 import base.ContaBancaria;
 import modelos.Cliente;
-import modelos.Operacao;
 
 // herda de ContaBancaria, ou seja, tem tudo que a outra tem mais algumas coisas novas
 public class ContaCorrente extends ContaBancaria {
@@ -17,25 +16,11 @@ public class ContaCorrente extends ContaBancaria {
         this.credito = credito;
     }
 
-    // sobrescreve o método original pra gente poder injetar a regra do limite antes
-    // de sacar
+    // FAÇA AS VERIFICAÇÕES AQUI
+    // PS: a verificação que está aqui é a padrão, tem que alterar
     @Override
-    public void movimenta(Operacao operacao) {
-        // lógica única (CRÉDITO)
-        char tipo = operacao.getTipo();
-        double valorOperacao = operacao.getValor();
-
-        if (tipo == 'S'){
-            if((getCredito() + this.credito) < valorOperacao){
-                System.out.println("Saldo Insuficiente");
-                return;
-            }
-        }
-        // usa o comportamento padrão da ContaBancaria
-        // chama o método da classe mãe pra fazer o trabalho pesado de atualizar o saldo
-        super.movimenta(operacao);
-        System.out.println("Opreação Realizada com Sucesso");
-        System.out.println("Saldo atual: " + getCredito());
+    protected boolean autorizaSaque(double valor) {
+        return valor <= this.getSaldo();
     }
 
     @Override

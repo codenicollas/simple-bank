@@ -50,12 +50,12 @@ public class ContaBancaria {
                 realizarDeposito(valor);
                 break;
             case 'S':
-                // VERIFICAO NA BASE
-                if (valor > this.saldo) {
+                if (!autorizaSaque(valor)) {
                     System.out.println("Saldo insuficiente.");
-                } else {
-                    realizarSaque(valor);
+                    return;
                 }
+
+                realizarSaque(valor);
                 break;
             default:
                 System.out.println("Operação inválida.");
@@ -139,8 +139,7 @@ public class ContaBancaria {
         System.out.println("  Atual:   R$ " + this.saldo);
 
         System.out.println("\nMovimentações (Qtd - Valor Total):");
-        System.out
-                .println("  Depósitos: " + this.depositos.getQuantidade() + "  - R$ " + this.depositos.getValorTotal());
+        System.out.println("  Depósitos: " + this.depositos.getQuantidade() + "  - R$ " + this.depositos.getValorTotal());
         System.out.println("  Saques:    " + this.saques.getQuantidade() + "  - R$ " + this.saques.getValorTotal());
         System.out.println("  Juros:     " + this.juros.getQuantidade() + "  - R$ " + this.juros.getValorTotal());
 
@@ -149,7 +148,15 @@ public class ContaBancaria {
         System.out.println("  Máximo: R$ " + this.saldoMaximo + "\n");
     }
 
+    protected boolean autorizaSaque(double valor) {
+        return valor <= this.saldo;
+    }
+
     protected void exibirDadosEspecificos() {
         System.out.println("  Tipo: Conta Padrão");
+    }
+
+    public double getSaldo() {
+        return this.saldo;
     }
 }

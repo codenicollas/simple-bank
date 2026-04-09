@@ -2,7 +2,6 @@ package contas;
 
 import base.ContaBancaria;
 import modelos.Cliente;
-import modelos.Operacao;
 
 // herda da conta base, mas com a regra de render juros em um dia específico
 public class ContaPoupanca extends ContaBancaria {
@@ -16,16 +15,11 @@ public class ContaPoupanca extends ContaBancaria {
         this.aniversario = aniversario;
     }
 
-    // sobrescreve pra poder aplicar a regra do rendimento antes de mexer no
-    // dinheiro
+    // FAÇA AS VERIFICAÇÕES AQUI
+    // PS: a verificação que está aqui é a padrão, tem que alterar
     @Override
-    public void movimenta(Operacao operacao) {
-        // lógica única
-        // (aqui entraria a checagem pra ver se é o dia certo de calcular os juros)
-
-        // usa o comportamento padrão da ContaBancaria
-        // repassa a operação de fato (saque/depósito) pra classe mãe resolver
-        super.movimenta(operacao);
+    protected boolean autorizaSaque(double valor) {
+        return valor <= this.getSaldo();
     }
 
     @Override
