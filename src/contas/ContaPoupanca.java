@@ -28,6 +28,11 @@ public class ContaPoupanca extends ContaBancaria {
         super.movimenta(operacao);
     }
 
+    @Override
+    protected void exibirDadosEspecificos() {
+        System.out.println("");
+    }
+
     public int getAniversario() {
         return aniversario;
     }

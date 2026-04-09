@@ -28,6 +28,11 @@ public class ContaInvestimento extends ContaBancaria {
         super.movimenta(operacao);
     }
 
+    @Override
+    protected void exibirDadosEspecificos() {
+        System.out.println("");
+    }
+
     public Data getVencimento() {
         return vencimento;
     }
