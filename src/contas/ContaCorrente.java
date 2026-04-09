@@ -22,10 +22,20 @@ public class ContaCorrente extends ContaBancaria {
     @Override
     public void movimenta(Operacao operacao) {
         // lógica única (CRÉDITO)
+        char tipo = operacao.getTipo();
+        double valorOperacao = operacao.getValor();
 
+        if (tipo == 'S'){
+            if((getCredito() + this.credito) < valorOperacao){
+                System.out.println("Saldo Insuficiente");
+                return;
+            }
+        }
         // usa o comportamento padrão da ContaBancaria
         // chama o método da classe mãe pra fazer o trabalho pesado de atualizar o saldo
         super.movimenta(operacao);
+        System.out.println("Opreação Realizada com Sucesso");
+        System.out.println("Saldo atual: " + getCredito());
     }
 
     @Override
