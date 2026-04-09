@@ -10,13 +10,15 @@ public class ContaCorrente extends ContaBancaria {
     // crédito extra que o cliente tem além do saldo (tipo um cheque especial)
     private double credito;
 
-    // o super joga o cliente e o saldo pra classe mãe resolver, e a gente só guarda o crédito aqui
+    // o super joga o cliente e o saldo pra classe mãe resolver, e a gente só guarda
+    // o crédito aqui
     public ContaCorrente(Cliente cliente, double saldo, double credito) {
         super(cliente, saldo);
         this.credito = credito;
     }
 
-    // sobrescreve o método original pra gente poder injetar a regra do limite antes de sacar
+    // sobrescreve o método original pra gente poder injetar a regra do limite antes
+    // de sacar
     @Override
     public void movimenta(Operacao operacao) {
         // lógica única (CRÉDITO)

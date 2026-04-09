@@ -7,6 +7,7 @@ import modelos.Data;
 import modelos.Operacao;
 
 public class Main {
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -80,7 +81,7 @@ public class Main {
                 ContaCorrente contaCorrente = new ContaCorrente(cliente, saldoInicial, limiteCredito);
                 System.out.println("Conta Corrente criada com sucesso!");
 
-                realizarOperacao(scanner, contaCorrente);
+                menuDaConta(scanner, contaCorrente);
                 break;
 
             case 'P':
@@ -94,17 +95,43 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
-    private static void realizarOperacao(Scanner scanner, ContaBancaria conta) {
-        System.out.println("\n--- Primeira Operação ---");
+    private static void menuDaConta(Scanner scanner, ContaBancaria conta) {
+        boolean operando = true;
 
-        char tipoOperacao = pedirTipoOperacao(scanner);
-        double valor = pedirDouble(scanner, "Valor da operação: ");
+        while (operando) {
+            System.out.println("\n--- Operações da Conta ---");
+            System.out.println("1 - Realizar Depósito");
+            System.out.println("2 - Realizar Saque");
+            System.out.println("3 - Ver Extrato");
+            System.out.println("4 - Voltar ao Menu Principal");
+            System.out.print("Escolha: ");
 
-        // empacota a operação num objeto e manda a conta resolver
-        Operacao operacao = new Operacao(tipoOperacao, valor);
-        conta.movimenta(operacao);
+            int escolha = scanner.nextInt();
 
-        System.out.println("Operação realizada com sucesso!");
+            // limpa a quebra de linha que sobra no scanner pra não pular o próximo input
+            scanner.nextLine();
+
+            switch (escolha) {
+                case 1:
+                    double valorDep = pedirDouble(scanner, "Valor do depósito: ");
+                    conta.movimenta(new Operacao('D', valorDep));
+                    break;
+                case 2:
+                    double valorSaq = pedirDouble(scanner, "Valor do saque: ");
+                    conta.movimenta(new Operacao('S', valorSaq));
+                    break;
+                case 3:
+                    conta.exibirExtrato();
+                    break;
+                case 4:
+                    operando = false;
+                    System.out.println("Saindo da conta...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        }
     }
 
     // STATIC POIS MAIN É STATIC
@@ -156,24 +183,6 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
-    private static char pedirTipoOperacao(Scanner scanner) {
-        // loop infinito pra prender o usuário até ele digitar uma letra válida
-
-        while (true) {
-            System.out.print("Operação (D - Depósito, S - Saque): ");
-
-            // trim pra remover os espaços e uppercase pra padronizar
-            String entrada = scanner.nextLine().toUpperCase().trim();
-
-            if (verificarTipoOperacao(entrada)) {
-                return entrada.charAt(0);
-            }
-
-            System.out.println("Operação inválida.");
-        }
-    }
-
-    // STATIC POIS MAIN É STATIC
     private static double pedirDouble(Scanner scanner, String mensagem) {
         // loop infinito pra prender o usuário até ele digitar um valor válido
 
@@ -188,17 +197,6 @@ public class Main {
 
             System.out.println("Valor inválido.");
         }
-    }
-
-    // STATIC POIS MAIN É STATIC
-    // garante que o usuario digitou D ou S
-    private static boolean verificarTipoOperacao(String entrada) {
-        if (entrada == null || entrada.isEmpty()) {
-            return false;
-        }
-
-        char tipo = entrada.charAt(0);
-        return tipo == 'D' || tipo == 'S';
     }
 
     // STATIC POIS MAIN É STATIC

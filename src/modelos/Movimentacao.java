@@ -5,9 +5,9 @@ public class Movimentacao {
     private int quantidade;
     private double valorTotal;
 
-    public Movimentacao(int quantidade, double valorTotal) {
-        this.quantidade = quantidade;
-        this.valorTotal = valorTotal;
+    public Movimentacao() {
+        this.quantidade = 0;
+        this.valorTotal = 0.0;
     }
 
     public void registrarOperacao(double valor) {

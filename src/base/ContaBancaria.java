@@ -1,21 +1,33 @@
 package base;
 
 import modelos.Cliente;
+import modelos.Movimentacao;
 import modelos.Operacao;
 
 public class ContaBancaria {
 
     private Cliente cliente;
     private double saldo;
+    private double saldoInicial;
 
-    // PENSAR NISSO DEPOIS (acho que é histórico / log)
-    // private Movimentacao depositos;
-    // private Movimentacao saques;
-    // private Movimentacao juros;
+    private double saldoMinimo;
+    private double saldoMaximo;
+
+    private Movimentacao depositos;
+    private Movimentacao saques;
+    private Movimentacao juros;
 
     public ContaBancaria(Cliente cliente, double saldo) {
         this.cliente = cliente;
+        this.saldoInicial = saldo;
         this.saldo = saldo;
+
+        this.saldoMinimo = saldo;
+        this.saldoMaximo = saldo;
+
+        this.depositos = new Movimentacao();
+        this.saques = new Movimentacao();
+        this.juros = new Movimentacao();
     }
 
     // METODO PRINCIPAL
@@ -53,7 +65,19 @@ public class ContaBancaria {
 
     // só adiciona o dinheiro no saldo
     public void realizarDeposito(double valor) {
+        if (valor <= 0) {
+            System.out.println("Valor inválido.");
+            return;
+        }
+
         this.saldo = this.saldo + valor;
+
+        this.depositos.registrarOperacao(valor);
+
+        if (this.saldo > this.saldoMaximo) {
+            this.saldoMaximo = this.saldo;
+        }
+
         System.out.println("Depósito realizado. O novo valor é: " + this.saldo);
     }
 
@@ -85,6 +109,12 @@ public class ContaBancaria {
         if (restante == 0) {
             this.saldo -= valor;
 
+            this.saques.registrarOperacao(valor);
+
+            if (this.saldo < this.saldoMinimo) {
+                this.saldoMinimo = this.saldo;
+            }
+
             System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
             System.out.print(extratoNotas);
             System.out.println("Novo saldo: R$ " + this.saldo);
@@ -93,11 +123,33 @@ public class ContaBancaria {
         }
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    // metodo para exibir extrato
+    public void exibirExtrato() {
+        System.out.println("\nEXTRATO BANCÁRIO");
+
+        System.out.println("Cliente:    " + this.cliente.getNome());
+        System.out.println("CPF:        " + this.cliente.getCpf());
+        System.out.println("Nascimento: " + this.cliente.getDtNascimento());
+
+        System.out.println("\nDados Específicos da Conta:");
+        this.exibirDadosEspecificos();
+
+        System.out.println("\nSaldos:");
+        System.out.println("  Inicial: R$ " + this.saldoInicial);
+        System.out.println("  Atual:   R$ " + this.saldo);
+
+        System.out.println("\nMovimentações (Qtd - Valor Total):");
+        System.out
+                .println("  Depósitos: " + this.depositos.getQuantidade() + "  - R$ " + this.depositos.getValorTotal());
+        System.out.println("  Saques:    " + this.saques.getQuantidade() + "  - R$ " + this.saques.getValorTotal());
+        System.out.println("  Juros:     " + this.juros.getQuantidade() + "  - R$ " + this.juros.getValorTotal());
+
+        System.out.println("\nPicos da Conta:");
+        System.out.println("  Mínimo: R$ " + this.saldoMinimo);
+        System.out.println("  Máximo: R$ " + this.saldoMaximo + "\n");
     }
 
-    public double getSaldo() {
-        return saldo;
+    protected void exibirDadosEspecificos() {
+        System.out.println("  Tipo: Conta Padrão");
     }
 }

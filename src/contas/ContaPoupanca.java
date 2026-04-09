@@ -16,7 +16,8 @@ public class ContaPoupanca extends ContaBancaria {
         this.aniversario = aniversario;
     }
 
-    // sobrescreve pra poder aplicar a regra do rendimento antes de mexer no dinheiro
+    // sobrescreve pra poder aplicar a regra do rendimento antes de mexer no
+    // dinheiro
     @Override
     public void movimenta(Operacao operacao) {
         // lógica única
