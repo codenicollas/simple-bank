@@ -20,7 +20,7 @@ public class ContaCorrente extends ContaBancaria {
     // PS: a verificação que está aqui é a padrão, tem que alterar
     @Override
     protected boolean autorizaSaque(double valor) {
-        return valor <= this.getSaldo();
+        return valor <= (getSaldo() + this.credito);
     }
 
     @Override
