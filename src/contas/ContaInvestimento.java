@@ -25,10 +25,28 @@ public class ContaInvestimento extends ContaBancaria {
 
     @Override
     protected void exibirDadosEspecificos() {
-        System.out.println("");
+        System.out.println("  Tipo: Conta Investimento");
+        System.out.println("  Vencimento: " + this.vencimento);
     }
 
     public Data getVencimento() {
         return vencimento;
     }
+    @Override
+    protected void aplicarJuros(double taxa) {  
+        // if (taxa <= 0) {
+        // System.out.println("Taxa de juros inválida.");           //validada na mãe?
+        // return;}
+        rendimentoJuros(taxa);
+
+    }    
+    protected void rendimentoJuros(double taxa){
+        double saldoAntes = getSaldo();
+	    double rendimento = getSaldo() * (taxa / 100); //registra saldo previsto como juros
+	    realizarDeposito(rendimento); //atualiza saldo
+
+        System.out.println("Rendimento aplicado: R$ " + rendimento);
+        System.out.println("Saldo anterior: R$ " + saldoAntes);
+    }    
+
 }

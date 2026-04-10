@@ -57,6 +57,10 @@ public class ContaBancaria {
 
                 realizarSaque(valor);
                 break;
+            case 'J':              
+                aplicarJuros(valor);    //valida o valor nos param. de juros 
+                break;
+    
             default:
                 System.out.println("Operação inválida.");
                 break;
@@ -159,4 +163,13 @@ public class ContaBancaria {
     public double getSaldo() {
         return this.saldo;
     }
+
+    protected void aplicarJuros(double taxa) {  
+        if (taxa <= 0) {
+        System.out.println("Taxa de juros inválida.");  //valida o input
+        return;}
+
+        System.out.println("Esta conta não suporta juros."); //metd padrão para override espcf
+    }
+
 }
