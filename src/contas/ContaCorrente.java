@@ -32,7 +32,8 @@ public class ContaCorrente extends ContaBancaria {
 
     @Override
     protected void exibirDadosEspecificos() {
-        System.out.println("Crédito: " + this.credito);
+        System.out.println("  Tipo: Conta Corrente");
+        System.out.println("  Crédito: " + this.credito);
     }
 
     public double getCredito() {
