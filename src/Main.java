@@ -94,7 +94,6 @@ public class Main {
 
                 menuDaConta(scanner, contaPoupanca);
                 break;
-
             case 'I':
                 Data vencimento = pedirVencimento(scanner); // método separado pra data
                 ContaInvestimento contaInvestimento = new ContaInvestimento(cliente, saldoInicial, vencimento);

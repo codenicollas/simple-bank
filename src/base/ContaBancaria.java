@@ -84,7 +84,7 @@ public class ContaBancaria {
 
         System.out.println("Saldo anterior: R$ " + saldoAntes);
         System.out.println("Rendimento aplicado: R$ " + rendimento);
-        System.out.println("Novo saldo: R$" + this.saldo);
+        System.out.println("Novo saldo: R$ " + this.saldo);
     }
 
     // só adiciona o dinheiro no saldo
