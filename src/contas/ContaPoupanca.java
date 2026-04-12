@@ -24,10 +24,27 @@ public class ContaPoupanca extends ContaBancaria {
 
     @Override
     protected void exibirDadosEspecificos() {
-        System.out.println("");
+        System.out.println("  Tipo: Conta Poupança");
+        System.out.println("  Aniversário: " + this.aniversario);
     }
 
     public int getAniversario() {
         return aniversario;
+    }
+
+    @Override
+    protected void aplicarJuros(double taxa) {
+ 
+        rendimentoJuros(taxa);
+
+    }
+
+protected void rendimentoJuros(double taxa) {
+        double saldoAntes = getSaldo();
+        double rendimento = getSaldo() * (taxa / 100); 
+        realizarDeposito(rendimento); 
+
+        System.out.println("Rendimento aplicado: R$ " + rendimento);
+        System.out.println("Saldo anterior: R$ " + saldoAntes);
     }
 }
