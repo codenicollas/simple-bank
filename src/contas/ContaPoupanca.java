@@ -31,20 +31,4 @@ public class ContaPoupanca extends ContaBancaria {
     public int getAniversario() {
         return aniversario;
     }
-
-    @Override
-    protected void aplicarJuros(double taxa) {
- 
-        rendimentoJuros(taxa);
-
-    }
-
-protected void rendimentoJuros(double taxa) {
-        double saldoAntes = getSaldo();
-        double rendimento = getSaldo() * (taxa / 100); 
-        realizarDeposito(rendimento); 
-
-        System.out.println("Rendimento aplicado: R$ " + rendimento);
-        System.out.println("Saldo anterior: R$ " + saldoAntes);
-    }
 }
