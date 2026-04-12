@@ -57,10 +57,10 @@ public class ContaBancaria {
 
                 realizarSaque(valor);
                 break;
-            case 'J':              
-                aplicarJuros(valor);    //valida o valor nos param. de juros 
+            case 'J':
+                aplicarJuros(valor); // valida o valor nos param. de juros
                 break;
-    
+
             default:
                 System.out.println("Operação inválida.");
                 break;
@@ -143,7 +143,8 @@ public class ContaBancaria {
         System.out.println("  Atual:   R$ " + this.saldo);
 
         System.out.println("\nMovimentações (Qtd - Valor Total):");
-        System.out.println("  Depósitos: " + this.depositos.getQuantidade() + "  - R$ " + this.depositos.getValorTotal());
+        System.out
+                .println("  Depósitos: " + this.depositos.getQuantidade() + "  - R$ " + this.depositos.getValorTotal());
         System.out.println("  Saques:    " + this.saques.getQuantidade() + "  - R$ " + this.saques.getValorTotal());
         System.out.println("  Juros:     " + this.juros.getQuantidade() + "  - R$ " + this.juros.getValorTotal());
 
@@ -164,12 +165,12 @@ public class ContaBancaria {
         return this.saldo;
     }
 
-    protected void aplicarJuros(double taxa) {  
+    protected void aplicarJuros(double taxa) {
         if (taxa <= 0) {
-        System.out.println("Taxa de juros inválida.");  //valida o input
-        return;}
+            System.out.println("Taxa de juros inválida."); // valida o input
+            return;
+        }
 
-        System.out.println("Esta conta não suporta juros."); //metd padrão para override espcf
+        System.out.println("Esta conta não suporta juros."); // metd padrão para override espcf
     }
-
 }

@@ -8,7 +8,7 @@ import modelos.Data;
 import modelos.Operacao;
 
 public class Main {
-    
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -94,10 +94,10 @@ public class Main {
                 ContaInvestimento contaInvestimento = new ContaInvestimento(cliente, saldoInicial, vencimento);
                 System.out.println("Conta Investimento criada com sucesso!");
                 menuDaConta(scanner, contaInvestimento);
-            
+
                 break;
             // System.out.println("Conta Investimento selecionada (Teste).");
-                // break;
+            // break;
         }
     }
 
@@ -111,7 +111,7 @@ public class Main {
             System.out.println("2 - Realizar Saque");
             System.out.println("3 - Ver Extrato");
             System.out.println("4 - Voltar ao Menu Principal");
-            System.out.println("5 - Aplicar Juros"); //teste, alterar ordem qnd vldado por tds
+            System.out.println("5 - Aplicar Juros"); // teste, alterar ordem qnd vldado por tds
             System.out.print("Escolha: ");
 
             int escolha = scanner.nextInt();
@@ -138,7 +138,7 @@ public class Main {
                 case 5:
                     double taxa = pedirDouble(scanner, "Taxa de juros (%): ");
                     conta.movimenta(new Operacao('J', taxa));
-                    break;    
+                    break;
                 default:
                     System.out.println("Opção inválida.");
                     break;
@@ -221,7 +221,8 @@ public class Main {
             return false;
         }
     }
-//METODO PARA INPUT DE VENCIMENTO PARA C.INVST
+
+    // METODO PARA INPUT DE VENCIMENTO PARA C.INVST
     private static Data pedirVencimento(Scanner scanner) {
         int dia = (int) pedirDouble(scanner, "Dia do vencimento: ");
         int mes = (int) pedirDouble(scanner, "Mês do vencimento: ");
