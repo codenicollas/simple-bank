@@ -15,13 +15,6 @@ public class ContaPoupanca extends ContaBancaria {
         this.aniversario = aniversario;
     }
 
-    // FAÇA AS VERIFICAÇÕES AQUI
-    // PS: a verificação que está aqui é a padrão, tem que alterar
-    @Override
-    protected boolean autorizaSaque(double valor) {
-        return valor <= this.getSaldo();
-    }
-
     @Override
     protected void exibirDadosEspecificos() {
         System.out.println("  Tipo: Conta Poupança");
