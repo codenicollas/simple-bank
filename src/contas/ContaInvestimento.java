@@ -3,6 +3,7 @@ package contas;
 import base.ContaBancaria;
 import modelos.Cliente;
 import modelos.Data;
+import modelos.Operacao;
 
 // mais uma que herda da conta base
 public class ContaInvestimento extends ContaBancaria {
@@ -16,11 +17,20 @@ public class ContaInvestimento extends ContaBancaria {
         this.vencimento = vencimento;
     }
 
-    // FAÇA AS VERIFICAÇÕES AQUI
-    // PS: a verificação que está aqui é a padrão, tem que alterar
     @Override
-    protected boolean autorizaSaque(double valor) {
-        return valor <= this.getSaldo();
+    public void movimenta(Operacao operacao) {
+        if (operacao.getTipo() == 'S') {
+            System.out.println("Esse tipo de conta não pode fazer saques.");
+            return;
+        }
+
+        super.movimenta(operacao);
+    }
+
+    @Override
+    public void realizarSaque(double valor) {
+        System.out.println("Esse tipo de conta não pode realizar saque");
+        return;
     }
 
     @Override
@@ -32,23 +42,4 @@ public class ContaInvestimento extends ContaBancaria {
     public Data getVencimento() {
         return vencimento;
     }
-
-    @Override
-    protected void aplicarJuros(double taxa) {
-        // if (taxa <= 0) {
-        // System.out.println("Taxa de juros inválida."); //validada na mãe?
-        // return;}
-        rendimentoJuros(taxa);
-
-    }
-
-    protected void rendimentoJuros(double taxa) {
-        double saldoAntes = getSaldo();
-        double rendimento = getSaldo() * (taxa / 100); // registra saldo previsto como juros
-        realizarDeposito(rendimento); // atualiza saldo
-
-        System.out.println("Rendimento aplicado: R$ " + rendimento);
-        System.out.println("Saldo anterior: R$ " + saldoAntes);
-    }
-
 }

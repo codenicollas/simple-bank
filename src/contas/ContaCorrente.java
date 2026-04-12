@@ -18,6 +18,13 @@ public class ContaCorrente extends ContaBancaria {
 
     // FAÇA AS VERIFICAÇÕES AQUI
     // PS: a verificação que está aqui é a padrão, tem que alterar
+
+    @Override
+    public void aplicarJuros(double taxa) {
+        System.out.println("Não permitido para Conta Corrente");
+        return;
+    }
+
     @Override
     protected boolean autorizaSaque(double valor) {
         return valor <= (getSaldo() + this.credito);
@@ -25,7 +32,7 @@ public class ContaCorrente extends ContaBancaria {
 
     @Override
     protected void exibirDadosEspecificos() {
-        System.out.println("");
+        System.out.println("Crédito: " + this.credito);
     }
 
     public double getCredito() {

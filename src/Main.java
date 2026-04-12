@@ -3,6 +3,7 @@ import java.util.Scanner;
 import base.ContaBancaria;
 import contas.ContaCorrente;
 import contas.ContaInvestimento;
+import contas.ContaPoupanca;
 import modelos.Cliente;
 import modelos.Data;
 import modelos.Operacao;
@@ -86,18 +87,23 @@ public class Main {
                 break;
 
             case 'P':
-                System.out.println("Conta Poupança selecionada (Teste).");
+                int diaRendimento = pedirDia(scanner);
+
+                ContaPoupanca contaPoupanca = new ContaPoupanca(cliente, saldoInicial, diaRendimento);
+                System.out.println("Conta Poupança criada com sucesso!");
+
+                menuDaConta(scanner, contaPoupanca);
                 break;
 
             case 'I':
                 Data vencimento = pedirVencimento(scanner); // método separado pra data
                 ContaInvestimento contaInvestimento = new ContaInvestimento(cliente, saldoInicial, vencimento);
+
                 System.out.println("Conta Investimento criada com sucesso!");
+
                 menuDaConta(scanner, contaInvestimento);
 
                 break;
-            // System.out.println("Conta Investimento selecionada (Teste).");
-            // break;
         }
     }
 
@@ -109,9 +115,9 @@ public class Main {
             System.out.println("\n--- Operações da Conta ---");
             System.out.println("1 - Realizar Depósito");
             System.out.println("2 - Realizar Saque");
-            System.out.println("3 - Ver Extrato");
-            System.out.println("4 - Voltar ao Menu Principal");
-            System.out.println("5 - Aplicar Juros"); // teste, alterar ordem qnd vldado por tds
+            System.out.println("3 - Aplicar Juros");
+            System.out.println("4 - Extrato");
+            System.out.println("5 - Voltar ao Menu Principal"); // teste, alterar ordem qnd vldado por tds
             System.out.print("Escolha: ");
 
             int escolha = scanner.nextInt();
@@ -129,15 +135,15 @@ public class Main {
                     conta.movimenta(new Operacao('S', valorSaq));
                     break;
                 case 3:
-                    conta.exibirExtrato();
-                    break;
-                case 4:
-                    operando = false;
-                    System.out.println("Saindo da conta...");
-                    break;
-                case 5:
                     double taxa = pedirDouble(scanner, "Taxa de juros (%): ");
                     conta.movimenta(new Operacao('J', taxa));
+                    break;
+                case 4:
+                    conta.exibirExtrato();
+                    break;
+                case 5:
+                    operando = false;
+                    System.out.println("Saindo da conta...");
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -212,6 +218,38 @@ public class Main {
     }
 
     // STATIC POIS MAIN É STATIC
+    private static int pedirDia(Scanner scanner) {
+        // loop infinito pra prender o usuário até ele digitar um dia válido
+        while (true) {
+            int dia = (int) pedirDouble(scanner, "Dia de rendimento: ");
+
+            // verifica se é um dia do mês válido na vida real
+            if (dia >= 1 && dia <= 31) {
+                return dia;
+            }
+
+            System.out.println("Dia inválido. Digite um valor entre 1 e 31.");
+        }
+    }
+
+    // METODO PARA INPUT DE VENCIMENTO PARA C.INVST
+    private static Data pedirVencimento(Scanner scanner) {
+        // loop infinito pra prender o usuário até a data inteira estar certa
+        while (true) {
+            int dia = (int) pedirDouble(scanner, "Dia do vencimento: ");
+            int mes = (int) pedirDouble(scanner, "Mês do vencimento: ");
+            int ano = (int) pedirDouble(scanner, "Ano do vencimento: ");
+
+            // validação simples pra evitar datas absurdas como 45/18/-2020
+            if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano > 0) {
+                return new Data(dia, mes, ano);
+            }
+
+            System.out.println("Data inválida. Tente novamente.");
+        }
+    }
+
+    // STATIC POIS MAIN É STATIC
     // usa o try/catch pra validar, se o parsedouble falhar n é numero
     private static boolean verificarNumero(String valorStr) {
         try {
@@ -220,14 +258,5 @@ public class Main {
         } catch (NumberFormatException exception) {
             return false;
         }
-    }
-
-    // METODO PARA INPUT DE VENCIMENTO PARA C.INVST
-    private static Data pedirVencimento(Scanner scanner) {
-        int dia = (int) pedirDouble(scanner, "Dia do vencimento: ");
-        int mes = (int) pedirDouble(scanner, "Mês do vencimento: ");
-        int ano = (int) pedirDouble(scanner, "Ano do vencimento: ");
-
-        return new Data(dia, mes, ano);
     }
 }
