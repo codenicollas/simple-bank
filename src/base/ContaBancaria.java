@@ -78,6 +78,8 @@ public class ContaBancaria {
         double rendimento = this.saldo * (taxa / 100);
         this.saldo += rendimento;
 
+        this.juros.registrarOperacao(rendimento);
+
         if (this.saldo > this.saldoMaximo) {
             this.saldoMaximo = this.saldo;
         }
