@@ -67,6 +67,26 @@ public class ContaBancaria {
         }
     }
 
+    public void aplicarJuros(double taxa) {
+        if (taxa <= 0) {
+            System.out.println("Valor inválido.");
+            return;
+        }
+
+        double saldoAntes = this.saldo;
+
+        double rendimento = this.saldo * (taxa / 100);
+        this.saldo += rendimento;
+
+        if (this.saldo > this.saldoMaximo) {
+            this.saldoMaximo = this.saldo;
+        }
+
+        System.out.println("Saldo anterior: R$ " + saldoAntes);
+        System.out.println("Rendimento aplicado: R$ " + rendimento);
+        System.out.println("Novo saldo: R$" + this.saldo);
+    }
+
     // só adiciona o dinheiro no saldo
     public void realizarDeposito(double valor) {
         if (valor <= 0) {
@@ -163,14 +183,5 @@ public class ContaBancaria {
 
     public double getSaldo() {
         return this.saldo;
-    }
-
-    protected void aplicarJuros(double taxa) {
-        if (taxa <= 0) {
-            System.out.println("Taxa de juros inválida."); // valida o input
-            return;
-        }
-
-        System.out.println("Esta conta não suporta juros."); // metd padrão para override espcf
     }
 }
