@@ -21,7 +21,6 @@ public class Main {
 
             int escolha = scanner.nextInt();
 
-            // limpa a quebra de linha que sobra no scanner pra não pular o próximo input
             scanner.nextLine();
 
             switch (escolha) {
@@ -45,7 +44,6 @@ public class Main {
         scanner.close();
     }
 
-    // STATIC POIS MAIN É STATIC
     private static void exibirMenu() {
         System.out.println("\nMenu:");
         System.out.println("1 - Abrir conta");
@@ -54,7 +52,6 @@ public class Main {
         System.out.print("Opção: ");
     }
 
-    // STATIC POIS MAIN É STATIC
     private static void mostrarIntegrantes() {
         System.out.println("\nIntegrantes:");
         System.out.println("- Nicolas Pinheiro Bueno");
@@ -63,7 +60,6 @@ public class Main {
         System.out.println("- Enzo Bueno");
     }
 
-    // STATIC POIS MAIN É STATIC
     private static void abrirConta(Scanner scanner) {
         System.out.println("\n--- Abertura de conta ---");
 
@@ -106,7 +102,6 @@ public class Main {
         }
     }
 
-    // STATIC POIS MAIN É STATIC
     private static void menuDaConta(Scanner scanner, ContaBancaria conta) {
         boolean operando = true;
 
@@ -116,12 +111,11 @@ public class Main {
             System.out.println("2 - Realizar Saque");
             System.out.println("3 - Aplicar Juros");
             System.out.println("4 - Extrato");
-            System.out.println("5 - Voltar ao Menu Principal"); // teste, alterar ordem qnd vldado por tds
+            System.out.println("5 - Voltar ao Menu Principal");
             System.out.print("Escolha: ");
 
             int escolha = scanner.nextInt();
 
-            // limpa a quebra de linha que sobra no scanner pra não pular o próximo input
             scanner.nextLine();
 
             switch (escolha) {
@@ -151,8 +145,7 @@ public class Main {
         }
     }
 
-    // STATIC POIS MAIN É STATIC
-    // isola a criação do cliente pra não poluir o switch principal
+    // isola a criação do cliente pra n poluir o switch
     private static Cliente pedirDadosCliente(Scanner scanner) {
         System.out.println("\nDados do cliente:");
         System.out.print("Nome: ");
@@ -170,17 +163,13 @@ public class Main {
         System.out.print("Ano nascimento: ");
         int ano = scanner.nextInt();
 
-        // limpa a quebra de linha que sobra no scanner pra não pular o próximo input
         scanner.nextLine();
 
         Data data = new Data(dia, mes, ano);
         return new Cliente(nome, cpf, data);
     }
 
-    // STATIC POIS MAIN É STATIC
     private static char pedirTipoConta(Scanner scanner) {
-        // loop infinito pra prender o usuário até ele digitar uma letra válida
-
         while (true) {
             System.out.print("Tipo (C - Corrente, P - Poupança, I - Investimento): ");
 
@@ -199,15 +188,11 @@ public class Main {
         }
     }
 
-    // STATIC POIS MAIN É STATIC
     private static double pedirDouble(Scanner scanner, String mensagem) {
-        // loop infinito pra prender o usuário até ele digitar um valor válido
-
         while (true) {
             System.out.print(mensagem);
             String valorStr = scanner.nextLine();
 
-            // usa nossa validação pra garantir que não vai quebrar o programa na conversão
             if (verificarNumero(valorStr)) {
                 return Double.parseDouble(valorStr.trim());
             }
@@ -216,13 +201,10 @@ public class Main {
         }
     }
 
-    // STATIC POIS MAIN É STATIC
     private static int pedirDia(Scanner scanner) {
-        // loop infinito pra prender o usuário até ele digitar um dia válido
         while (true) {
             int dia = (int) pedirDouble(scanner, "Dia de rendimento: ");
 
-            // verifica se é um dia do mês válido na vida real
             if (dia >= 1 && dia <= 31) {
                 return dia;
             }
@@ -231,15 +213,12 @@ public class Main {
         }
     }
 
-    // METODO PARA INPUT DE VENCIMENTO PARA C.INVST
     private static Data pedirVencimento(Scanner scanner) {
-        // loop infinito pra prender o usuário até a data inteira estar certa
         while (true) {
             int dia = (int) pedirDouble(scanner, "Dia do vencimento: ");
             int mes = (int) pedirDouble(scanner, "Mês do vencimento: ");
             int ano = (int) pedirDouble(scanner, "Ano do vencimento: ");
 
-            // validação simples pra evitar datas absurdas como 45/18/-2020
             if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano > 0) {
                 return new Data(dia, mes, ano);
             }
@@ -248,7 +227,6 @@ public class Main {
         }
     }
 
-    // STATIC POIS MAIN É STATIC
     // usa o try/catch pra validar, se o parsedouble falhar n é numero
     private static boolean verificarNumero(String valorStr) {
         try {
