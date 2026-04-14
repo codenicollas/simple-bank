@@ -152,7 +152,6 @@ public class Main {
             } else {
                 System.out.println("Opção inválida");
                 scanner.nextLine();
-                break;
             }
         }
     }
@@ -160,11 +159,22 @@ public class Main {
     // isola a criação do cliente pra n poluir o switch
     private static Cliente pedirDadosCliente(Scanner scanner) {
         System.out.println("\nDados do cliente:");
+        
         System.out.print("Nome Completo: ");
         String nome = scanner.nextLine();
 
+        if (nome == null || nome.isEmpty()) {
+            System.out.println("Não pode ser vazio.");
+            return null;
+        }
+
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
+
+        if (cpf == null || cpf.isEmpty()) {
+            System.out.println("Não pode ser vazio.");
+            return null;
+        }
 
         System.out.print("Dia nascimento: ");
         int dia = scanner.nextInt();
