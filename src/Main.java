@@ -19,29 +19,31 @@ public class Main {
         while (rodando) {
             exibirMenu();
 
-            int escolha = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                int escolha = scanner.nextInt();
 
-            scanner.nextLine();
+                scanner.nextLine();
 
-            switch (escolha) {
-                case 1:
-                    abrirConta(scanner);
-                    break;
-                case 2:
-                    mostrarIntegrantes();
-                    break;
-                case 3:
-                    rodando = false;
-                    System.out.println("Encerrando.");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
-                    break;
+                switch (escolha) {
+                    case 1:
+                        abrirConta(scanner);
+                        break;
+                    case 2:
+                        mostrarIntegrantes();
+                        break;
+                    case 3:
+                        rodando = false;
+                        System.out.println("Encerrando.");
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                        break;
+                }
+            } else {
+                System.out.println("Opção inválida.");
+                scanner.nextLine();
             }
         }
-
-        // fechar scanner pro vscode não reclamar
-        scanner.close();
     }
 
     private static void exibirMenu() {
@@ -67,6 +69,10 @@ public class Main {
 
         // chama o método lá de baixo pra montar o cliente
         Cliente cliente = pedirDadosCliente(scanner);
+
+        if (cliente == null) {
+            return;
+        }
 
         double saldoInicial = pedirDouble(scanner, "Saldo inicial: ");
 
@@ -114,33 +120,39 @@ public class Main {
             System.out.println("5 - Voltar ao Menu Principal");
             System.out.print("Escolha: ");
 
-            int escolha = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                int escolha = scanner.nextInt();
 
-            scanner.nextLine();
+                scanner.nextLine();
 
-            switch (escolha) {
-                case 1:
-                    double valorDep = pedirDouble(scanner, "Valor do depósito: ");
-                    conta.movimenta(new Operacao('D', valorDep));
-                    break;
-                case 2:
-                    double valorSaq = pedirDouble(scanner, "Valor do saque: ");
-                    conta.movimenta(new Operacao('S', valorSaq));
-                    break;
-                case 3:
-                    double taxa = pedirDouble(scanner, "Taxa de juros (%): ");
-                    conta.movimenta(new Operacao('J', taxa));
-                    break;
-                case 4:
-                    conta.exibirExtrato();
-                    break;
-                case 5:
-                    operando = false;
-                    System.out.println("Saindo da conta...");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
-                    break;
+                switch (escolha) {
+                    case 1:
+                        double valorDep = pedirDouble(scanner, "Valor do depósito: ");
+                        conta.movimenta(new Operacao('D', valorDep));
+                        break;
+                    case 2:
+                        double valorSaq = pedirDouble(scanner, "Valor do saque: ");
+                        conta.movimenta(new Operacao('S', valorSaq));
+                        break;
+                    case 3:
+                        double taxa = pedirDouble(scanner, "Taxa de juros (%): ");
+                        conta.movimenta(new Operacao('J', taxa));
+                        break;
+                    case 4:
+                        conta.exibirExtrato();
+                        break;
+                    case 5:
+                        operando = false;
+                        System.out.println("Saindo da conta...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                        break;
+                }
+            } else {
+                System.out.println("Opção inválida");
+                scanner.nextLine();
+                break;
             }
         }
     }
@@ -148,7 +160,7 @@ public class Main {
     // isola a criação do cliente pra n poluir o switch
     private static Cliente pedirDadosCliente(Scanner scanner) {
         System.out.println("\nDados do cliente:");
-        System.out.print("Nome: ");
+        System.out.print("Nome Completo: ");
         String nome = scanner.nextLine();
 
         System.out.print("CPF: ");
@@ -157,11 +169,26 @@ public class Main {
         System.out.print("Dia nascimento: ");
         int dia = scanner.nextInt();
 
+        if (dia < 1) {
+            System.out.println("Dia inválido.");
+            return null;
+        }
+
         System.out.print("Mês nascimento: ");
         int mes = scanner.nextInt();
 
+        if (mes <= 0 || mes > 12) {
+            System.out.println("Mês inválido");
+            return null;
+        }
+
         System.out.print("Ano nascimento: ");
         int ano = scanner.nextInt();
+
+        if (ano <= 0) {
+            System.out.println("Ano inválido.");
+            return null;
+        }
 
         scanner.nextLine();
 
